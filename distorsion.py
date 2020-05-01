@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
-#import dangerzone, posibleSolution
+import dangerzone
 
 sample_rate, samples = wavfile.read('songs/hakuna_matata.wav')
 samplesDanger = samples[5000040:5000140] #We can change here to make the wave with more amplitude or not #We can change here to make the wave with more amplitude or not
 samples = samples[5000000:5000100] #We can change here to make the wave with more amplitude or not
+dv = dangerzone.danger()
 
 plt.subplot(211)
 
