@@ -10,17 +10,17 @@ def cheat(y0, y1, false_positives=0, false_negatives=0):
     for i in range(len(matches)):
         if matches[i]:
             if random.random() < false_negatives:
+                print(matches[i] + "Matches de random < false-negative")
                 matches[i] = False
         else:
             if random.random() < false_positives:
                 matches[i] = True
+                print(matches[i] + "Matches de random > false-positive")
 
     return matches
-
+"""
 def kevin(y, maxdelta):
-    """
     Recognizes via a method defined by Kevin.
-    """
     matches = [True] * len(y)
     laststable = y[0]
 
@@ -33,3 +33,4 @@ def kevin(y, maxdelta):
             laststable = y[i]
 
     return matches
+"""
