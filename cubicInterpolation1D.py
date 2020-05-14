@@ -18,6 +18,7 @@ def cubitInterpolation1D():
     wavfile.write('songs/generator_song/regen_song.wav', sample_rate, BadSample)
     IwannaSee(sample, BadSample)
 
+
 def IwannaSee(sample, BadSample):
 
     plt.title('Cubic interpolation 1D')

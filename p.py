@@ -13,7 +13,7 @@ def p():
 
     matches = recognize.cheat(sample, BadSample)
     x, y = utils.tovalidxy(BadSample, matches)
-    p1 = cp.polyfit(x,y,10)
+    p1 = cp.polyfit(x,y,2)
     utils.repair(BadSample, matches, p1)
     wavfile.write('songs/generator_song/regen_song.wav', sample_rate, BadSample)
     IwannaSee(sample, BadSample)

@@ -3,6 +3,7 @@ from scipy.interpolate import BarycentricInterpolator
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
+import numpy as np
 
 def lagrangeInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
