@@ -1,30 +1,31 @@
 from scipy.io import wavfile
-from scipy.interpolate import lagrange
+from scipy.interpolate import pchip_interpolate
+#import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
 import numpy as np
 
-def otherLagrangeInterpolation():
+def pchipInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
-    x = np.array(range(0, 100))
-    y = np.array(sample[5000000:5000100])  # We can change here to make the wave with more amplitude or not
+    sample = sample[5000000:5000100]
 
     sample_rateBAD, sampleBAD = wavfile.read('songs/bad_songs/not_good_song.wav')
     sampleBAD = sampleBAD[5000000:5000100]
 
-    BadSample = y.copy()
+    BadSample = sample.copy()
 
-    dz.theEvilMethod(BadSample, 0.5, blocksize=2)
-    matches = recognize.cheat(y, BadSample)
-    f = lagrange(x,y)
+    dz.theEvilMethod(BadSample, 0.7)
+    matches = recognize.cheat(sample, BadSample)
+    x, y = utils.tovalidxy(BadSample, matches)
+    f = pchip_interpolate(x,y, 100)
+
     #utils.repair(BadSample, matches, f)
-    IwannaSee(y, BadSample, sampleBAD)
-    
+    IwannaSee(sample, BadSample, sampleBAD)
 
 def IwannaSee(sample, BadSample, sampleBAD):
 
-    plt.title('Other Lagrange interpolation')
+    plt.title('pchip interpolation')
     plt.xlabel('Frame')
     plt.ylabel('Amplitude')
     plt.plot(sample, label='real')
@@ -33,4 +34,4 @@ def IwannaSee(sample, BadSample, sampleBAD):
     plt.legend(loc='best')
     plt.show()
 
-otherLagrangeInterpolation()
+pchipInterpolation()

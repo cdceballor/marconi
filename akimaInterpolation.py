@@ -1,12 +1,12 @@
 from scipy.io import wavfile
-from scipy.interpolate import BarycentricInterpolator
+from scipy.interpolate import Akima1DInterpolator
 #import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
 import numpy as np
 
-def lagrangeInterpolation():
+def akimaInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
     sample = sample[5000000:5000100]
 
@@ -15,18 +15,23 @@ def lagrangeInterpolation():
 
     BadSample = sample.copy()
 
-    dz.theEvilMethod(BadSample, 0.7)
+    dz.theEvilMethod(BadSample, 0.5)
     matches = recognize.cheat(sample, BadSample)
     x, y = utils.tovalidxy(BadSample, matches)
-
-    f = BarycentricInterpolator(x,y)
-    utils.repair(BadSample, matches, f)
-
+    f = Akima1DInterpolator(x,y)
+    #utils.repair(BadSample, matches, f)
     IwannaSee(sample, BadSample, sampleBAD)
+"""
+    xNotValid = utils.invalidx(matches)
+    fixedy = f(xNotValid)
+    utils.replace(BadSample, xNotValid, fixedy)
+    wavfile.write('songs/generator_song/regen_Akira_song.wav', sample_rate, BadSample)
+"""
+
 
 def IwannaSee(sample, BadSample, sampleBAD):
 
-    plt.title('Lagrange interpolation')
+    plt.title('Akima1D interpolation')
     plt.xlabel('Frame')
     plt.ylabel('Amplitude')
     plt.plot(sample, label='real')
@@ -35,4 +40,4 @@ def IwannaSee(sample, BadSample, sampleBAD):
     plt.legend(loc='best')
     plt.show()
 
-lagrangeInterpolation()
+akimaInterpolation()

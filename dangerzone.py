@@ -7,8 +7,7 @@ def danger():
 
     badSamples = samples.copy()
 
-    theEvilMethod(badSamples, 0.5) #we can change the value that is the percent with the song is broked
-    wavfile.write('songs/bad_songs/bad_song.wav', sample_rate, badSamples)
+    theEvilMethod(badSamples, 0.2) #we can change the value that is the percent with the song is broked
     plt.subplot(211)
 
 def theEvilMethod(y, percent, blocksize=1):
