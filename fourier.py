@@ -12,15 +12,15 @@ def main():
     producto =[]
 
     dt = 0.001
-    t = np.arange(0,30,dt)
+    t = np.arange(0,10,dt)
     print(len(badSample))
     for a in range(0,int(len(badSample)-10000),10000):
-        f = badSample[a:a+30000]
+        f = badSample[a:a+10000]
         n = len(t)
         fhat = np.fft.fft(f,n)
         psd = fhat * np.conj(fhat) / n
         freq = (1/(dt*n)) * np.arange(n)
-        indices = psd >400000000
+        indices = psd >300000000
         psdclean = psd * indices
         fhat = indices * fhat
         ffilt = (np.fft.ifft(fhat))/30000
