@@ -14,7 +14,7 @@ def main():
     dt = 0.001
     t = np.arange(0,30,dt)
     print(len(badSample))
-    for a in range(0,int(len(badSample)),30000):
+    for a in range(0,int(len(badSample)-10000),10000):
         f = badSample[a:a+30000]
         n = len(t)
         fhat = np.fft.fft(f,n)
