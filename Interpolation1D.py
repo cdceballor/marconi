@@ -1,12 +1,10 @@
 from scipy.io import wavfile
 from scipy.interpolate import interp1d
-import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
 
 def cubitInterpolation1D():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
-    #sample = sample[5000000:5000100]
 
     BadSample = sample.copy()
 

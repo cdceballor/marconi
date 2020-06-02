@@ -1,10 +1,8 @@
 from scipy.io import wavfile
 from scipy.interpolate import KroghInterpolator
-#import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
-import numpy as np
 
 def kroghInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')

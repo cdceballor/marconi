@@ -2,7 +2,6 @@ from matplotlib import pyplot as plt
 from scipy.optimize import leastsq
 import numpy as np
 from scipy.io import wavfile
-import dangerzone as dz
 
 sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
 datos_x = np.array(range(0, 100))

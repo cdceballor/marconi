@@ -1,10 +1,8 @@
 from scipy.io import wavfile
 from scipy.interpolate import pchip_interpolate
-#import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
-import numpy as np
 
 def pchipInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
@@ -20,7 +18,6 @@ def pchipInterpolation():
     x, y = utils.tovalidxy(BadSample, matches)
     f = pchip_interpolate(x,y, 100)
 
-    #utils.repair(BadSample, matches, f)
     IwannaSee(sample, BadSample, sampleBAD)
 
 def IwannaSee(sample, BadSample, sampleBAD):

@@ -1,10 +1,8 @@
 from scipy.io import wavfile
 from scipy.interpolate import Akima1DInterpolator
-#import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import dangerzone as dz
 import recognize, utils
-import numpy as np
 
 def akimaInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
@@ -19,15 +17,7 @@ def akimaInterpolation():
     matches = recognize.cheat(sample, BadSample)
     x, y = utils.tovalidxy(BadSample, matches)
     f = Akima1DInterpolator(x,y)
-    #utils.repair(BadSample, matches, f)
     IwannaSee(sample, BadSample, sampleBAD)
-"""
-    xNotValid = utils.invalidx(matches)
-    fixedy = f(xNotValid)
-    utils.replace(BadSample, xNotValid, fixedy)
-    wavfile.write('songs/generator_song/regen_Akira_song.wav', sample_rate, BadSample)
-"""
-
 
 def IwannaSee(sample, BadSample, sampleBAD):
 

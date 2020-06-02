@@ -5,9 +5,8 @@ import numpy as np
 
 def polynomialReg():
     sample_rate, samples = wavfile.read('songs/hakuna_matata.wav')
-#samples = samples[5000000:5000100] #We can change here to make the wave with more amplitude or not
     x = np.array(range(0,100))
-    y = np.array(samples[5000000:5000100]) #We can change here to make the wave with more amplitude or not
+    y = np.array(samples[5000000:5000100])
     plt.subplot(211)
     p1=cp.polyfit(x,y,1)
     p2 = cp.polyfit(x,y,2)

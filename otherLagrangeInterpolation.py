@@ -2,13 +2,13 @@ from scipy.io import wavfile
 from scipy.interpolate import lagrange
 import matplotlib.pyplot as plt
 import dangerzone as dz
-import recognize, utils
+import recognize
 import numpy as np
 
 def otherLagrangeInterpolation():
     sample_rate, sample = wavfile.read('songs/hakuna_matata.wav')
     x = np.array(range(0, 100))
-    y = np.array(sample[5000000:5000100])  # We can change here to make the wave with more amplitude or not
+    y = np.array(sample[5000000:5000100])
 
     sample_rateBAD, sampleBAD = wavfile.read('songs/bad_songs/not_good_song.wav')
     sampleBAD = sampleBAD[5000000:5000100]
@@ -18,7 +18,6 @@ def otherLagrangeInterpolation():
     dz.theEvilMethod(BadSample, 0.5, blocksize=2)
     matches = recognize.cheat(y, BadSample)
     f = lagrange(x,y)
-    #utils.repair(BadSample, matches, f)
     IwannaSee(y, BadSample, sampleBAD)
     
 

@@ -1,10 +1,6 @@
 from scipy.io import wavfile
-from scipy.interpolate import Akima1DInterpolator
-#import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
-import dangerzone as dz
-import recognize, utils
-import numpy as np
+
 sample_rate, sample = wavfile.read('songs/generator_song/regen_linear_song.wav')
 sample = sample[5000000:5000100]
 
