@@ -7,7 +7,7 @@ def danger():
 
     badSamples = samples.copy()
 
-    theEvilMethod(badSamples, 0.2) #we can change the value that is the percent with the song is broked
+    theEvilMethod(badSamples, 0.5)
     plt.subplot(211)
 
 def theEvilMethod(y, percent, blocksize=1):

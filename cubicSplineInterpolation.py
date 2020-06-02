@@ -10,7 +10,7 @@ def cubicSplineInterpolation():
 
     BadSample = sample.copy()
 
-    dz.theEvilMethod(BadSample, 0.7)
+    dz.theEvilMethod(BadSample, 0.5)
     matches = recognize.cheat(sample, BadSample)
     x, y = utils.tovalidxy(BadSample, matches)
     f = CubicSpline(x,y)

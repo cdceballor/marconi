@@ -39,7 +39,7 @@ def funcion(x, p):
 x1 = np.arange(0, datos_x.max(), 0.001)  # array con muchos puntos de x
 y1 = funcion(x1, ajuste[0])           # valor de la funcion modelo en los x
 
-plt.plot(x1, y1, 'r-')
+plt.plot(x1, y1,)
 plt.xlabel('Eje X')
 plt.ylabel('Eje Y')
 plt.title('Ajuste del problema con leastsq')

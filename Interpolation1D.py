@@ -20,6 +20,6 @@ def cubitInterpolation1D():
     xNotValid = utils.invalidx(matches)
     fixedy = f(xNotValid)
     utils.replace(BadSample, xNotValid, fixedy)
-    wavfile.write('songs/generator_song/regen_linear_song.wav', sample_rate, BadSample)
+    wavfile.write('songs/generator_song/regen_sinOriginal_song.wav', sample_rate, BadSample)
 
 cubitInterpolation1D()
