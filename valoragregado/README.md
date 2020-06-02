@@ -1,4 +1,5 @@
-# Librerías
--Scipy
--Numpy
--Tabulate
+# README#
+-Librerías-
+  -Scipy
+  -Numpy
+  -Tabulate
