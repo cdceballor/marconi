@@ -1,1 +1,4 @@
-# Aquí va el readme
+# Librerías
+-Scipy
+-Numpy
+-Tabulate
