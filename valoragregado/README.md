@@ -1,5 +1,5 @@
-# README#
--Librerías-
+# README
+-Librerías
   -Scipy
   -Numpy
   -Tabulate
