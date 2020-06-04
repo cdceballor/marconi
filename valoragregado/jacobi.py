@@ -1,15 +1,26 @@
+from numpy import array, diag, diagflat, dot
 import  numpy as np
-A=np.array([[15,-7,2],
-            [-4,20,-16],
-            [13,-4,45],])
-b=np.array([5.,34.,-23.])
-x=np.zeros_like(b)
-N=100
-for k in range(N):
-    for i in range(len(b)):
-        x[i]=(b[i]-np.sum(A[i][:i]*x[:i])-np.sum(A[i][i+1:]*x[i+1:]))/A[i][i]#Lado izquierdo de la diagonal
+from numpy.linalg import inv
 
-    e=np.linalg.norm(A@x-b)
-    print(k,x,e)
-    if e<1e-6:
+N=100
+A=array([[45.,-3.,-7.,8.],[-12.,36.,9.,-5.],[-6.,4.,57.,-8],[-3.,-5.,-10.,78.]])
+b=array([1000.,-50.,300.,53.])
+guess=array([0.,0.,0.,0.])
+
+U=np.triu(A,1)
+L=np.tril(A,-1)
+D=diagflat(diag(A))
+invD=inv(D)
+minLminU=-L-U
+e= 0.00000000000002
+for i in range(N):
+    minLminUdotXplusB=dot(minLminU, guess) + b
+    guess = dot(invD, minLminUdotXplusB)
+    print(i+1,np.round(guess, 5))
+    e=np.linalg.norm(A@guess-b)
+    if e<1e-2:
         break
+
+
+
+
