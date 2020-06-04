@@ -39,26 +39,26 @@ class Secante:
 
             while error > tolerancia and fx != 0 and den != 0 and contador < niter:
 
-                x2 = x1 - fx1*((x1 - x0) / den)
+
                 #print("2: "+str(x2))
                 #error = abs(x2 - x1)
-
-                error = abs(x1 - x0)
-                contador += 1
+                x2 = x1 - (fx1*(x1 - x0)) / den
+                error = abs(x2 - x1)
                 x0 = x1
                 fx = fx1
                 x1 = x2
                 fx1 = self.f(x1)
-                den = fx1-fx
+                contador += 1
 
                 data_to_table.append([contador, x0, fx, error])
 
+            
             if fx1 == 0:
                 p += str("x0={} es una raiz".format(x0))
                 p += str("numero de iteraciones={}:".format(contador)+"\n")
             elif error < tolerancia:
                 p += str("x1={} es una aproximación a una raiz con una tolerancia={}".format(x1, tolerancia)+"\n")
-            elif den == 0 or x1 ==0:
+            elif den == 0:
                 p+= str("den={} " + "Hay una raiz multiple en " + str(x1)+"\n")
             else:
                 p += str("Fracaso en niter={} iteraciones".format(niter)+"\n")

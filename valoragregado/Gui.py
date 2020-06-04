@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+
 from incrementalSearches import *
 from bisection import *
 from falsePosition import *
@@ -8,7 +9,20 @@ from newton import *
 from secante import *
 from MultipleR import *
 from PivotP import*
+from PivotT import*
 from pivoteoSimple import*
+from Crouty import *
+from Doolittlee import *
+from Cholittle import *
+from Jacobii import *
+from GaussSeidel import *
+from GaussSeidelR import *
+from JacobiR import *
+from Diferenciacion import *
+from Integracion import *
+from Lagrange import *
+from NewtonDD import *
+from Spline1 import *
 
 class IntroFrame(ttk.Frame):
     def __init__(self, *args, **kwargs):
@@ -450,13 +464,6 @@ class Gauss(ttk.Frame):
         super().__init__(*args, **kwargs)
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the n")
-        self.label.pack()
-
-        self.n = ttk.Entry(self)
-        self.n.pack()
-        
-        self.label = ttk.Label(self)
         self.label["text"] = ("Insert the Matrix")
         self.label.pack()
 
@@ -475,8 +482,8 @@ class Gauss(ttk.Frame):
 
 
     def answer(self):
-        I1 = pivoteoSimple(int(self.n.get()), self.mat.get())
-        self.label["text"] = I1.pivoteoS()
+        I1 = pivoteoSimple(self.mat.get())
+        self.label["text"] = I1.simple()
 
 
 
@@ -492,12 +499,6 @@ class PivotParc(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -514,8 +515,8 @@ class PivotParc(ttk.Frame):
 
 
     def answer(self):
-        I1 = PivotP(int(self.n.get()),self.mat.get())
-        self.label["text"] = I1.main()
+        I1 = PivotP(self.mat.get())
+        self.label["text"] = I1.parcial()
 
 
 
@@ -531,13 +532,6 @@ class PivotTot(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
-
 
         self.calculate = ttk.Button(
             self, 
@@ -551,9 +545,10 @@ class PivotTot(ttk.Frame):
         self.label = ttk.Label(self)
         self.label.pack()
 
+
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = PivotT(self.mat.get())
+        self.label["text"] = I1.total()
 
 
 
@@ -595,8 +590,7 @@ class PPivot(ttk.Frame):
 
 
 
-class Crout(ttk.Frame):
-    #Phased Pivot
+class Croutt(ttk.Frame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -606,13 +600,6 @@ class Crout(ttk.Frame):
 
         self.mat = ttk.Entry(self)
         self.mat.pack()  
-
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -628,8 +615,8 @@ class Crout(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Crouty(self.mat.get())
+        self.label["text"] = I1.crout()
 
 
 
@@ -645,13 +632,6 @@ class Doolittle(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
-
 
         self.calculate = ttk.Button(
             self, 
@@ -666,8 +646,8 @@ class Doolittle(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Doolittlee(self.mat.get())
+        self.label["text"] = I1.doolittle()
 
 
 
@@ -683,12 +663,6 @@ class Cholesky(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -704,13 +678,16 @@ class Cholesky(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Cholittle(self.mat.get())
+        self.label["text"] = I1.chol()
 
 
 
 class Jacobi(ttk.Frame):
     #Phased Pivot
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -722,11 +699,32 @@ class Jacobi(ttk.Frame):
         self.mat.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the vector b")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.b = ttk.Entry(self)
+        self.b.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the size of matrix")
+        self.label.pack()
+
+        self.n = ttk.Entry(self)
+        self.n.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the error")
+        self.label.pack()
+
+        self.error = ttk.Entry(self)
+        self.error.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the number of iterations")
+        self.label.pack()
+
+        self.iter = ttk.Entry(self)
+        self.iter.pack() 
 
 
         self.calculate = ttk.Button(
@@ -742,8 +740,8 @@ class Jacobi(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Jacobii(self.mat.get(), self.b.get(), self.n.get(), self.error.get(), self.iter.get())
+        self.label["text"] = I1.Jac()
 
 
 
@@ -760,11 +758,32 @@ class GausS(ttk.Frame):
         self.mat.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the vector b")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.b = ttk.Entry(self)
+        self.b.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the size of matrix")
+        self.label.pack()
+
+        self.n = ttk.Entry(self)
+        self.n.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the error")
+        self.label.pack()
+
+        self.error = ttk.Entry(self)
+        self.error.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the number of iterations")
+        self.label.pack()
+
+        self.iter = ttk.Entry(self)
+        self.iter.pack() 
 
 
         self.calculate = ttk.Button(
@@ -780,8 +799,8 @@ class GausS(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = GaussSeidel(self.mat.get(), self.b.get(),self.n.get(), self.error.get(), self.iter.get())
+        self.label["text"] = I1.GaussS()
 
 
 
@@ -797,12 +816,6 @@ class JacobS(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -818,7 +831,7 @@ class JacobS(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = JacobiR(self.mat.get())
         self.label["text"] = I1.main()
 
 
@@ -836,12 +849,39 @@ class GausR(ttk.Frame):
         self.mat.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the vector b")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.b = ttk.Entry(self)
+        self.b.pack() 
 
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the size of matrix")
+        self.label.pack()
+
+        self.n = ttk.Entry(self)
+        self.n.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the error")
+        self.label.pack()
+
+        self.error = ttk.Entry(self)
+        self.error.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the number of iterations")
+        self.label.pack()
+
+        self.iter = ttk.Entry(self)
+        self.iter.pack() 
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the lambda")
+        self.label.pack()
+
+        self.lam = ttk.Entry(self)
+        self.lam.pack() 
 
         self.calculate = ttk.Button(
             self, 
@@ -856,29 +896,29 @@ class GausR(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = GaussSeidelR(self.mat.get(), self.b.get(), self.n.get(), self.error.get(), self.iter.get(),self.lam.get())
+        self.label["text"] = I1.GaussSR()
 
 
 
 class Integ(ttk.Frame):
-    #Phased Pivot
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the matrix")
+        self.label["text"] = ("Insert the n vector")
         self.label.pack()
 
-        self.mat = ttk.Entry(self)
-        self.mat.pack()  
+        self.n = ttk.Entry(self)
+        self.n.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the fx vector")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.fx = ttk.Entry(self)
+        self.fx.pack() 
 
 
         self.calculate = ttk.Button(
@@ -894,7 +934,7 @@ class Integ(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = Integracion(self.n.get(),self.fx.get())
         self.label["text"] = I1.main()
 
 
@@ -905,18 +945,18 @@ class NumericDif(ttk.Frame):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the matrix")
+        self.label["text"] = ("Insert the n vector")
         self.label.pack()
 
-        self.mat = ttk.Entry(self)
-        self.mat.pack()  
+        self.n = ttk.Entry(self)
+        self.n.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the fx vector")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.fx = ttk.Entry(self)
+        self.fx.pack() 
 
 
         self.calculate = ttk.Button(
@@ -932,13 +972,13 @@ class NumericDif(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = Diferenciacion(self.n.get(), self.fx.get())
         self.label["text"] = I1.main()
 
 
 
 class NewtonD(ttk.Frame):
-    #Phased Pivot
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -950,12 +990,11 @@ class NewtonD(ttk.Frame):
         self.mat.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the number of points")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
-
+        self.n = ttk.Entry(self)
+        self.n.pack()  
 
         self.calculate = ttk.Button(
             self, 
@@ -970,7 +1009,7 @@ class NewtonD(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = NewtonDD(self.mat.get(), self.n.get())
         self.label["text"] = I1.main()
 
 
@@ -981,18 +1020,26 @@ class Lagr(ttk.Frame):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the matrix")
+        self.label["text"] = ("Insert the vector x")
         self.label.pack()
 
-        self.mat = ttk.Entry(self)
-        self.mat.pack()  
+        self.x = ttk.Entry(self)
+        self.x.pack()  
+    
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the vector y")
+        self.label.pack()
+
+        self.y = ttk.Entry(self)
+        self.y.pack()  
+
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the size n")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.n = ttk.Entry(self)
+        self.n.pack()  
 
 
         self.calculate = ttk.Button(
@@ -1008,29 +1055,36 @@ class Lagr(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Lagrange(self.x.get(), self.y.get(), self.n.get())
+        self.label["text"] = I1.Lag()
 
 
 
-class Spline1(ttk.Frame):
+class Splinel(ttk.Frame):
     #Phased Pivot
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the matrix")
+        self.label["text"] = ("Insert the vector x")
         self.label.pack()
 
-        self.mat = ttk.Entry(self)
-        self.mat.pack()  
+        self.x = ttk.Entry(self)
+        self.x.pack()  
 
         self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
+        self.label["text"] = ("Insert the vector y")
         self.label.pack()
 
-        self.size = ttk.Entry(self)
-        self.size.pack() 
+        self.y = ttk.Entry(self)
+        self.y.pack()  
+
+        self.label = ttk.Label(self)
+        self.label["text"] = ("Insert the number of points")
+        self.label.pack()
+
+        self.n = ttk.Entry(self)
+        self.n.pack()  
 
 
         self.calculate = ttk.Button(
@@ -1046,13 +1100,13 @@ class Spline1(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
-        self.label["text"] = I1.main()
+        I1 = Spline1(self.x.get(), self.y.get(), self.n.get())
+        self.label["text"] = I1.SplineLineal()
 
 
 
 class Spline2(ttk.Frame):
-    #Phased Pivot
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -1062,13 +1116,6 @@ class Spline2(ttk.Frame):
 
         self.mat = ttk.Entry(self)
         self.mat.pack()  
-
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -1084,13 +1131,12 @@ class Spline2(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = Spline2(self.mat.get())
         self.label["text"] = I1.main()
 
 
 
 class Spline3(ttk.Frame):
-    #Phased Pivot
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -1101,12 +1147,6 @@ class Spline3(ttk.Frame):
         self.mat = ttk.Entry(self)
         self.mat.pack()  
 
-        self.label = ttk.Label(self)
-        self.label["text"] = ("Insert the size of the matrix")
-        self.label.pack()
-
-        self.size = ttk.Entry(self)
-        self.size.pack() 
 
 
         self.calculate = ttk.Button(
@@ -1122,7 +1162,7 @@ class Spline3(ttk.Frame):
         self.label.pack()
 
     def answer(self):
-        I1 = PivotP(self.mat.get(),self.size.get())
+        I1 = Spline3(self.mat.get())
         self.label["text"] = I1.main()
 
 
@@ -1218,7 +1258,7 @@ class Application(ttk.Frame):
             padding=10
             )
 
-        self.crout = Crout(self.notebook)
+        self.crout = Croutt(self.notebook)
         self.notebook.add(
             self.crout,
             text="Crout",
@@ -1299,7 +1339,7 @@ class Application(ttk.Frame):
             )
 
 
-        self.spline1 = Spline1(self.notebook)
+        self.spline1 = Splinel(self.notebook)
         self.notebook.add(
             self.spline1,
             text="Linear Spline",
@@ -1328,6 +1368,5 @@ class Application(ttk.Frame):
 main_window = tk.Tk()
 app = Application(main_window)
 app.mainloop()
-
 
 

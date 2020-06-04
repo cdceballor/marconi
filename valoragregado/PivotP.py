@@ -1,71 +1,66 @@
 import numpy as np
 import utiles
+from tabulate import tabulate
 
 class PivotP:
     
 
-    def __init__(self, n, mat): 
-        self.n = n
-        self.mat = mat
-    
-    def pivoteo(matrix_pr, i):
-        mayor = round(abs(matrix_pr[i][i]), 3)
+    def __init__(self,mat):
+
+        self.mat=mat
+
+
+    def pivoteo(self,mat,i):
+        mayor = round(abs(mat[i][i]),3)
         filamayor = i
-        for a in range(i+1, len(matrix_pr)):
-            if abs(matrix_pr[a][i]) > mayor:
-                mayor = round(abs(matrix_pr[a][i]))
+        for a in range(i+1,len(mat)):
+            if abs(mat[a][i]) > mayor:
+                mayor = round(abs(mat[a][i]))
                 filamayor = a
+        
 
         if mayor == 0:
-            p+=("El sistema no tiene solucion")
-        elif i != filamayor:
-            matrix_pr[[i, filamayor]] = matrix_pr[[filamayor, i]]
+            print("El sistema no tiene solucion")
+            return 0
+        elif i != filamayor: 
+            mat[[i,filamayor]] = mat[[filamayor,i]]
 
+
+        return mat
 
     def parcial(self):
-        a = self.mat.split(";")
-        n = self.n
-        cont = 0
-        p = ""
-        if(n == 3):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            matrix_pr = arr0, arr1, arr2
-        elif(n == 4):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3
-        elif(n == 5):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            arr4 = a[4].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3, arr4
-        elif(n == 6):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            arr4 = a[4].split(",")
-            arr5 = a[5].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3, arr4, arr5
+        p=""
+        mat=self.mat.replace("[","")
+        mat=mat.replace("]","")
+        mat=mat.split(",")
+        mat = np.array(mat)        
+        mat = mat.astype(np.float)
+        print(mat)
+        if len(mat) ==6:
+            mat=mat.reshape(2,3)
+        elif len(mat) ==12:
+            mat = mat.reshape(3,4)
+        elif len(mat) ==20:
+            mat = mat.reshape(4,5)
+        elif len(mat) ==30:
+            mat = mat.reshape(5,6)
+        elif len(mat) ==42:
+            mat = mat.reshape(6,7)
 
-        for i in range(0,len(matrix_pr)):
-            matrix_pr =pivoteo(matrix_pr,i)
-            for j in range(i+1,len(matrix_pr)):
-                mult = round(matrix_pr[j][i]/matrix_pr[i][i],3)
-                p+=("Multiplicador "+str(mult))
-                for k in range(i,len(matrix_pr[0])):
-                    matrix_pr[j][k]= round(matrix_pr[j][k]-(mult*matrix_pr[i][k]),3)
-            p+=str(utiles.printmat(matrix_pr))
-        p+= str(utiles.printmat(utiles.susre(matrix_pr)))
+
+        for i in range(0,len(mat)):
+            mat =self.pivoteo(mat,i)
+            for j in range(i+1,len(mat)):
+                mult = round(mat[j][i]/mat[i][i],3)
+                print("Multiplicador "+str(mult))
+                for k in range(i,len(mat[0])):
+                    mat[j][k]= round(mat[j][k]-(mult*mat[i][k]),3)
+
+        
+        
+        p+= (tabulate(mat))
+        p+= "\n"
+
+        p+= "|         X1        |       X2         |          X3         |        X4        |\n"
+        p+=  str(utiles.susre(mat)) 
         return p
-
-        utiles.printmat(matrix_pr)
-
-
-

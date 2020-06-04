@@ -44,16 +44,18 @@ class MultipleR:
 
         data_to_table.append([contador, x0, fx, fx1, fx2, error])
         p = ""
+
         while error > tolerancia and fx != 0 and den != 0 and contador < niter:
             x1 = x0 - fx*fx1 / den
-            print("fxantes: "+str(fx))
-            fx = self.f(x1)
-            print("fxdesp: "+str(fx))
-            fx1 = self.dfx1(x1)
-            fx2 = self.dfx2(x1)
+            #print("fxantes: "+str(fx))s
+            #print("fxdesp: "+str(fx))
             error = abs(x1 - x0)
             contador += 1
             x0 = x1
+            fx = self.f(x0)
+            fx1 = self.dfx1(x0)
+            fx2 = self.dfx2(x0)
+            den = (math.pow(fx1,2)-fx*fx2)
             data_to_table.append([contador, x0, fx, fx1, fx2, error])
 
         if fx == 0:

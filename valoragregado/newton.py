@@ -55,14 +55,14 @@ class newton:
 
         if fx == 0:
             p = "x0={} es una raiz".format(x0)
-            p+= str("numero de iteraciones={}:".format(contador))
+            p+= str(", numero de iteraciones={}:".format(contador))+"\n"
         elif error < tolerancia:
             p=+str("x1={} es una proximación a una raiz con una tolerancia={}".format(
                 x1, tolerancia)+"\n")
         elif dfx == 0:
             p+= str("x1={} es una posible raiz multiple".format(x1)+"\n")
         else:
-            p+= str("Fracaso en niter={} iteraciones".format(niter)+"\n")
+            p+= str(" Fracaso en niter={} iteraciones".format(niter)+"\n")
 
         p+= (tabulate(data_to_table, headers=[
             "N", "X0", "F(X)", "F'(X)", "error"]))

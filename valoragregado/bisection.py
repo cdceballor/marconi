@@ -38,54 +38,51 @@ class bisection:
         if iteraciones<1:
             p="Iterations must be greater than 0 (Error)"
             
-
-        if resultado == 0:
+        elif resultado == 0:
             p=str(medio)+" Its a root (Success)"
             
-
-        if self.funcion(a)*self.funcion(b)>0:
+        elif self.funcion(a)*self.funcion(b)>0:
             p="There is no root in this interval (Error) "
               
     #First iteration
         #This algorithm stores all the data in a txt called biseccion.txt,
         #f=open("biseccion.txt","w+") 
         #Loop start
-        
+        else:
 
-        while resultado!=0 and i<=iteraciones and math.fabs(x0-resultado)>tolerancia:
+            while resultado!=0 and i<=iteraciones and math.fabs(x0-resultado)>tolerancia:
             #Control of process
 
             #las partes del write no estan en el pseudo codigo ya que esto
             #es un adicional, no hace parte del algoritmo
             #f.write("--------")
             #f.write(
-            p+="Iteration-"+str(i)+"Range: ["+str(a)+","+str(b)+"]  M= "+str(medio)+"  f(m)= "+str(resultado)+"\n"                    
+                p+="Iteration- "+str(i)+"Range: ["+str(a)+","+str(b)+"]  M= "+str(medio)+"  f(m)= "+str(resultado)+"\n"                    
 
-            if i>1:
-                p+="Error: "+str(math.fabs(x0-medio))+"\n"
+                if i>1:
+                    p+="Error: "+str(math.fabs(x0-medio))+"\n"
                 #print(resultado*self.funcion(a))
-            if resultado*self.funcion(a)>0:
-                a=medio
-            else:
-                b=medio
-            x0 = medio
-            y0=resultado
-            medio=(a+b)/2
-            resultado=self.funcion(medio)
-            i+=1   
+                
+                if resultado*self.funcion(a)>0:
+                    a=medio
+                else:
+                    b=medio
+
+                x0 = medio
+                y0=resultado
+                medio=(a+b)/2
+                resultado=self.funcion(medio)
+                i+=1   
         
-        p+="\n"
+            p+="\n"
 
         #Controles de salida (Exito/Fracaso)
-        if resultado==0:
-            p+="The root is: " +str(medio)+" (Success)"
-        elif i>iteraciones:
-            p+="Iteration limit reached (Failure)"
-        elif math.fabs(x0-medio)<tolerancia:
-            p+="The maximum tolerance permitted "+str(tolerancia)+ " But in the iteration "+str(i)+"\n"
-            +"the maximum tolerance was reached "+str(math.fabs(x0-medio))+" (Fracaso)"
-
-
-
+            if resultado==0:
+                p+="The root is: " +str(medio)+" (Success)"
+            elif i>iteraciones:
+                p+="Iteration limit reached (Failure)"
+            elif math.fabs(x0-medio)<tolerancia:
+                p+="The maximum tolerance permitted "+str(tolerancia)+ " But in the iteration "+str(i)+"\n"
+                +"the maximum tolerance was reached "+str(math.fabs(x0-medio))+" (Fracaso)"
 
         return p

@@ -68,7 +68,7 @@ def printmat(x):
     for i in range(len(x)):
         for j in range(len(x)):
             print(str(x[i][j])+", ",end = "")
-        print("= "+str(x[i][len(x)]))
+        print("= "+str(x[i][len(x)])+"\n")
     print("\n\n\n\n_________________")
 
 

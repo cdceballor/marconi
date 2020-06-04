@@ -36,7 +36,7 @@ class fixedPoint:
             error = abs((xn-X0)/xn)
             #abs error
             #error = abs(xn-x0)
-            p+="| " + str(cont) + " | " + str(X0) + " | " + str(fx) + " | " + str(error) + " | "+"\n"
+            p+="| " + str(cont) + "  | "+"      " +"| "+ str(X0) + " |"+"      " +"| "+ str(fx) + " |" +"      "+"| "+ str(error) + " |"+"\n"
             cont = cont + 1
             X0 = xn
         

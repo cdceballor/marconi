@@ -1,58 +1,46 @@
 import utiles
-import numpy
+import numpy as np
+from tabulate import tabulate
 # Metodo para gauss simple
 
 
 class pivoteoSimple:
 
-    def __init__(self, n, mat):
-        self.n = n
-        self.mat = mat
+    def __init__(self,mat):
 
-    def pivoteoS(self):
-        a=self.mat.split(";")
-        n=self.n
-        cont = 0
-        p = ""
+        self.mat=mat
 
+    def simple(self):
+        mat=self.mat.replace("[","")
+        mat=mat.replace("]","")
+        mat=mat.split(",")
+        mat = np.array(mat)        
+        mat = mat.astype(np.float)
+        print(mat)
+        if len(mat) ==6:
+            mat=mat.reshape(2,3)
+        elif len(mat) ==12:
+            mat = mat.reshape(3,4)
+        elif len(mat) ==20:
+            mat = mat.reshape(4,5)
+        elif len(mat) ==30:
+            mat = mat.reshape(5,6)
+        elif len(mat) ==42:
+            mat = mat.reshape(6,7)
+        p=""
+        for i in range(0,len(mat)):
+            for j in range(i+1,len(mat)):
+                mult = round(mat[j][i]/mat[i][i],3)
+                print("Multiplicador "+str(mult))
+                for k in range(i,len(mat[0])):
+                    mat[j][k]= round(mat[j][k]-(mult*mat[i][k]),3)
 
-        if(n==3):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            matrix_pr = arr0, arr1, arr2
-        elif(n==4):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3
-        elif(n==5):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            arr4 = a[4].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3,arr4
-        elif(n==6):
-            arr0 = a[0].split(",")
-            arr1 = a[1].split(",")
-            arr2 = a[2].split(",")
-            arr3 = a[3].split(",")
-            arr4 = a[4].split(",")
-            arr5 = a[5].split(",")
-            matrix_pr = arr0, arr1, arr2, arr3,arr4, arr5
+        p+= (tabulate(mat))
+        p+= "\n"
 
-        for i in range(len(matrix_pr)):
-            for j in range(i+1, len(matrix_pr)):
-                mult = float(matrix_pr[j][i])/float(matrix_pr[i][i])
-                for k in range(i, len(matrix_pr[0])):
-                    matrix_pr[j][k] = float(matrix_pr[j][k])-(mult*float(matrix_pr[i][k]))
-                    cont += 1
-                    p += str(utiles.printmat(matrix_pr))
-        p += "-----------------------------\n"
-        p += "Sustitución Regresiva\n"
-        p+= str(utiles.susre(pivoteoS(matrix_pr)))
-        print(p)
+        p+= "|         X1        |       X2         |          X3         |        X4        |\n"
+        p+=  str(utiles.susre(mat)) 
+        
         return p
+
 
