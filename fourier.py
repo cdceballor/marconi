@@ -3,9 +3,9 @@ import numpy as np
 
 
 def main():
-    s_rate, signal =wavfile.read('marconi-master/songs/bad_songs/bad_song.wav')
-    sample_badRate, badSample = wavfile.read('marconi-master/songs/bad_songs/bad_song.wav')
-    sample_rate, samples = wavfile.read('marconi-master/songs/hakuna_matata.wav')
+    s_rate, signal =wavfile.read('songs/bad_songs/bad_song.wav')
+    sample_badRate, badSample = wavfile.read('songs/bad_songs/bad_song.wav')
+    sample_rate, samples = wavfile.read('songs/hakuna_matata.wav')
     producto =[]
 
     dt = 0.001
