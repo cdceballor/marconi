@@ -3,8 +3,8 @@ import numpy as np
 
 
 def main():
-    s_rate, signal =wavfile.read('songs/bad_songs/bad_song.wav')
-    sample_badRate, badSample = wavfile.read('songs/bad_songs/bad_song.wav')
+    s_rate, signal =wavfile.read('songs/bad_songs/not_good_song.wav')
+    sample_badRate, badSample = wavfile.read('songs/bad_songs/not_good_song.wav')
     sample_rate, samples = wavfile.read('songs/hakuna_matata.wav')
     producto =[]
 
